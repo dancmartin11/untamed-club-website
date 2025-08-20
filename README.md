@@ -46,6 +46,7 @@ website/
 ├── package.json
 ├── start.bat                   # Windows quick start
 ├── deploy.sh
+├── LICENSE
 └── README.md
 ```
 
