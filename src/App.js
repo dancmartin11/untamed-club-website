@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
+import Navigation from './components/Navigation';
 import EmailSubscription from './components/EmailSubscription';
 import HeroSection from './components/HeroSection';
+import ApparelSection from './components/ApparelSection';
 import BrandSection from './components/BrandSection';
+import CommunitySection from './components/CommunitySection';
 
 function App() {
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -13,18 +16,12 @@ function App() {
 
   return (
     <div className="App">
+      <Navigation />
       <HeroSection />
+      <ApparelSection />
       <BrandSection />
       <EmailSubscription onSubscriptionSuccess={handleSubscriptionSuccess} />
-      
-      {isSubscribed && (
-        <div className="subscription-success">
-          <div className="success-content">
-            <h2>Welcome to the Club! 🥊</h2>
-            <p>You're now on our exclusive waiting list. We'll notify you as soon as we launch!</p>
-          </div>
-        </div>
-      )}
+      <CommunitySection />
     </div>
   );
 }

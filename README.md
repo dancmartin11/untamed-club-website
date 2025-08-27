@@ -1,14 +1,16 @@
 # Untamed Club - Landing Page
 
-A modern, responsive landing page for Untamed Club, a combat sports and streetwear brand. Built with React (frontend) and Node.js/Express (backend), featuring email collection, MongoDB storage, and optional automated emails (Gmail/SendGrid).
+A modern, responsive landing page for Untamed Club, a combat sports and streetwear brand. Built with React (frontend) and Node.js/Express (backend), featuring email collection, MongoDB storage, apparel showcase, and optional automated emails (Gmail/SendGrid).
 
 ## 🥊 Features
 
-- **Hero Section**: “Coming Soon…” with immersive brand imagery
+- **Hero Section**: "Coming Soon…" with immersive brand imagery
+- **Apparel Showcase**: Interactive product display with image navigation
 - **Email Collection**: Newsletter form with validation
 - **MongoDB Integration**: Secure subscriber storage
 - **Automated Emails**: Welcome emails via Nodemailer or SendGrid
 - **Responsive Design**: Mobile-first, animations, modern UI
+- **Interactive Navigation**: Logo click-to-top, smooth scrolling
 - **Scalable**: Structured to grow into a newsletter bot
 
 ## 🚀 Tech Stack
@@ -29,7 +31,10 @@ website/
 │   ├── components/
 │   │   ├── HeroSection.js
 │   │   ├── BrandSection.js
-│   │   └── EmailSubscription.js
+│   │   ├── ApparelSection.js  # NEW: Product showcase with navigation
+│   │   ├── CommunitySection.js
+│   │   ├── EmailSubscription.js
+│   │   └── Navigation.js      # NEW: Logo and navigation
 │   ├── App.js
 │   ├── index.js
 │   └── *.css
@@ -50,6 +55,36 @@ website/
 └── README.md
 ```
 
+## ✨ New Features (Latest Update)
+
+### 🎯 **Apparel Section**
+- **Product Blocks**: Three main products with titles and prices
+- **Image Navigation**: Left/right arrows to browse multiple product photos
+- **Product Details**:
+  - Left: "UNTMD Mastery Tee | Premium Lightweight" - $499 MXN
+  - Middle: "UNTMD Gallo de Pelea Tee – Premium Lightweight" - $499 MXN
+  - Right: "UNTMD Kill or Be Killed Lycra – Performance Fit" - $449 MXN
+- **Interactive Gallery**: Click to expand images with custom legends
+- **Responsive Design**: Optimized for all screen sizes
+
+### 🖼️ **Image Management**
+- **Multiple Photos per Product**: Each product has 3 different images
+- **Smooth Navigation**: Circular navigation through product photos
+- **Expanded View**: Full-screen modal with product-specific titles
+- **Optimized Layout**: Product blocks sized for optimal image display
+
+### 🧭 **Enhanced Navigation**
+- **Brand Logo**: Untamed Club logo positioned at top-left
+- **Click to Top**: Logo click smoothly scrolls to page top
+- **Visual Feedback**: Hover effects and pointer cursor
+- **Responsive Logo**: SVG format with proper scaling
+
+### 🎨 **UI Improvements**
+- **Reduced Text Sizes**: Optimized expanded image legends
+- **Better Spacing**: Improved product block proportions
+- **Smooth Animations**: Enhanced hover effects and transitions
+- **Professional Layout**: Clean, modern product presentation
+
 ## ✅ Local Setup Checklist
 
 1) Node.js 16+ and npm installed  
@@ -61,6 +96,11 @@ website/
 ### 1) Move Images (required)
 - Move all files under `website/images/` → `website/public/images/`
 - Components reference `/images/...` which CRA serves from `public/`
+- **Required Images**:
+  - `untamedCLUB_logo.svg` (navigation logo)
+  - `untamed_mastery_shirt_*.jpg` (3 images for Mastery Tee)
+  - `gallo_de_pelea_shirt_*.jpg` (3 images for Gallo Tee)
+  - `kobk_shirt_*.jpg` (3 images for KOBK Lycra)
 
 ### 2) Frontend proxy (dev only)
 Ensure root `website/package.json` has:
@@ -110,10 +150,13 @@ npm run dev
 ## 🧪 How to Test
 
 1) Visit http://localhost:3000 and confirm images render  
-2) Submit a test email in the form  
-3) Expect `POST /api/subscribe` → 201  
-4) Check Atlas: database (e.g., `untamedclub_db`) should have `subscribers` with your email  
-5) Health check: http://localhost:5000/api/health
+2) Test apparel section navigation arrows
+3) Click on product images to expand view
+4) Click logo to scroll to top
+5) Submit a test email in the form  
+6) Expect `POST /api/subscribe` → 201  
+7) Check Atlas: database (e.g., `untamedclub_db`) should have `subscribers` with your email  
+8) Health check: http://localhost:5000/api/health
 
 Notes:
 - You do NOT need to pre-create collections; MongoDB/Mongoose creates `subscribers` on first insert.
@@ -222,6 +265,7 @@ Deploy `backend/` to:
 - Images missing: ensure files are in `public/images` and referenced as `/images/...`
 - MongoDB connection: verify `MONGODB_URI`, IP allowlist, user credentials
 - SendGrid: Single Sender verified and correct API key; DNS auth optional but improves deliverability
+- Apparel images not loading: verify all 9 product images are in `public/images/`
 
 ## 📊 API Endpoints
 
@@ -235,13 +279,14 @@ Deploy `backend/` to:
 - Mobile-first
 - Breakpoints: 480px, 768px, 1200px
 - Optimized images and animations
+- Product blocks adapt to screen size
 
 ## 🎨 Theme
 
-- Primary: `#ff6b35`
-- Secondary: `#f7931e`
-- Background: `#000000`
-- Text: `#ffffff`
+- Primary: `#c5a020` (Gold)
+- Secondary: `#000000` (Black)
+- Background: `#ffffff` (White)
+- Text: `#000000` (Black)
 - Font: Inter
 
 ## 📄 License

@@ -1,0 +1,189 @@
+.community-section {
+  padding: 100px 20px;
+  background: #000000;
+  text-align: center;
+  position: relative;
+}
+
+.community-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.community-content h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 32px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.community-content h2.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.community-content > p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #cccccc;
+  margin-bottom: 60px;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.2s;
+}
+
+.community-content > p.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.community-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.4s;
+}
+
+.community-links.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.community-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 30px;
+  background: #111111;
+  border: 2px solid #c5a020;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.community-link:hover {
+  border-color: #ffffff;
+  background: #1a1a1a;
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(197, 160, 32, 0.3);
+}
+
+.community-link.instagram:hover {
+  border-color: #e4405f;
+  box-shadow: 0 16px 40px rgba(228, 64, 95, 0.3);
+}
+
+.community-link.discord:hover {
+  border-color: #5865f2;
+  box-shadow: 0 16px 40px rgba(88, 101, 242, 0.3);
+}
+
+.community-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.community-link:hover .community-logo {
+  transform: scale(1.1);
+}
+
+.community-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #c5a020;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.community-link.instagram:hover .community-text {
+  color: #e4405f;
+}
+
+.community-link.discord:hover .community-text {
+  color: #5865f2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .community-section {
+    padding: 80px 15px;
+  }
+  
+  .community-content h2 {
+    font-size: 3rem;
+  }
+  
+  .community-content > p {
+    font-size: 1rem;
+    margin-bottom: 50px;
+  }
+  
+  .community-links {
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 50px;
+  }
+  
+  .community-link {
+    padding: 25px;
+    min-width: 180px;
+  }
+  
+  .community-logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .community-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .community-section {
+    padding: 60px 15px;
+  }
+  
+  .community-content h2 {
+    font-size: 2.5rem;
+  }
+  
+  .community-content > p {
+    font-size: 0.95rem;
+  }
+  
+  .community-link {
+    padding: 20px;
+    min-width: 160px;
+  }
+  
+  .community-logo {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .community-text {
+    font-size: 0.9rem;
+  }
+}

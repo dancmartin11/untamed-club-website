@@ -4,87 +4,85 @@ const emailService = require('../services/emailService');
 
 const router = express.Router();
 
-// POST /api/subscribe - Add new subscriber
+// POST /api/subscribe
 router.post('/', async (req, res) => {
   try {
-    const { email } = req.body;
-    
-    // Validate email
-    if (!email || !email.trim()) {
+    const { firstName, lastName, email, martialArts } = req.body;
+
+    // Validate required fields
+    if (!firstName || !lastName || !email) {
       return res.status(400).json({
         success: false,
-        message: 'Email is required'
+        message: 'First name, last name, and email are required'
       });
     }
 
     // Check if email already exists
-    const existingSubscriber = await Subscriber.emailExists(email);
+    const existingSubscriber = await Subscriber.findOne({ email: email.toLowerCase() });
+
     if (existingSubscriber) {
-      if (existingSubscriber.status === 'unsubscribed') {
-        // Reactivate unsubscribed user
-        existingSubscriber.status = 'active';
-        await existingSubscriber.save();
-        
-        // Send welcome back email
-        try {
-          await emailService.sendWelcomeBackEmail(email);
-        } catch (emailError) {
-          console.log('Welcome back email failed:', emailError.message);
-        }
-        
-        return res.json({
-          success: true,
-          message: 'Welcome back! You have been resubscribed.',
-          data: { email: existingSubscriber.email }
-        });
+      // Update existing subscriber's information
+      existingSubscriber.firstName = firstName;
+      existingSubscriber.lastName = lastName;
+      if (martialArts && Array.isArray(martialArts)) {
+        existingSubscriber.martialArts = martialArts;
       }
-      
-      return res.status(409).json({
-        success: false,
-        message: 'This email is already subscribed to our newsletter'
+      await existingSubscriber.save();
+
+      // Send welcome back email
+      try {
+        await emailService.sendWelcomeBackEmail(email, firstName);
+      } catch (emailError) {
+        console.error('Failed to send welcome back email:', emailError);
+        // Don't fail the subscription if email fails
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: 'Welcome back! Your information has been updated.',
+        data: {
+          firstName: existingSubscriber.firstName,
+          lastName: existingSubscriber.lastName,
+          email: existingSubscriber.email,
+          martialArts: existingSubscriber.martialArts
+        }
       });
     }
 
     // Create new subscriber
     const subscriber = new Subscriber({
-      email: email.trim(),
-      metadata: {
-        ipAddress: req.ip || req.connection.remoteAddress,
-        userAgent: req.get('User-Agent'),
-        referrer: req.get('Referer')
-      }
+      firstName,
+      lastName,
+      email: email.toLowerCase(),
+      martialArts: Array.isArray(martialArts) ? martialArts : []
     });
 
     await subscriber.save();
 
     // Send welcome email
     try {
-      await emailService.sendWelcomeEmail(email);
-      subscriber.incrementEmailCount();
+      await emailService.sendWelcomeEmail(email, firstName);
     } catch (emailError) {
-      console.log('Welcome email failed:', emailError.message);
+      console.error('Failed to send welcome email:', emailError);
       // Don't fail the subscription if email fails
     }
 
     res.status(201).json({
       success: true,
-      message: 'Successfully subscribed to Untamed Club newsletter!',
-      data: { email: subscriber.email }
+      message: 'Successfully subscribed to Untamed Club!',
+      data: {
+        firstName: subscriber.firstName,
+        lastName: subscriber.lastName,
+        email: subscriber.email,
+        martialArts: subscriber.martialArts
+      }
     });
 
   } catch (error) {
     console.error('Subscription error:', error);
-    
-    if (error.code === 11000) {
-      return res.status(409).json({
-        success: false,
-        message: 'This email is already subscribed'
-      });
-    }
-    
     res.status(500).json({
       success: false,
-      message: 'Failed to subscribe. Please try again later.'
+      message: 'Internal server error. Please try again later.'
     });
   }
 });

@@ -1,7 +1,8 @@
 .email-subscription {
   padding: 100px 20px;
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  background: #111111;
   text-align: center;
+  position: relative;
 }
 
 .subscription-content {
@@ -10,72 +11,215 @@
 }
 
 .subscription-content h2 {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 3.5rem; /* Standardized header size */
+  font-weight: 300;
+  margin-bottom: 24px;
+  color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.subscription-content h2.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .subscription-content > p {
-  font-size: 1.3rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
   color: #cccccc;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   line-height: 1.6;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.2s;
+}
+
+.subscription-content > p.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .subscription-form {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.4s;
+}
+
+.subscription-form.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .form-group {
   display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group:last-child {
+  justify-content: center;
+  text-align: center;
+}
+
+.name-input {
+  flex: 1;
+  padding: 16px 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  background: #222222;
+  border: 1px solid #444444;
+  border-radius: 4px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.name-input::placeholder {
+  color: #888888;
+}
+
+.name-input:focus {
+  border-color: #c5a020;
+  background: #1a1a1a;
+  box-shadow: 0 0 0 3px rgba(197, 160, 32, 0.2);
+  outline: none;
 }
 
 .email-input {
   flex: 1;
-  padding: 18px 24px;
-  font-size: 1.1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  padding: 16px 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  background: #222222;
+  border: 1px solid #444444;
+  border-radius: 4px;
   color: #ffffff;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
 }
 
 .email-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: #888888;
 }
 
 .email-input:focus {
-  border-color: #ff6b35;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  border-color: #c5a020;
+  background: #1a1a1a;
+  box-shadow: 0 0 0 3px rgba(197, 160, 32, 0.2);
+  outline: none;
+}
+
+/* Martial Arts Multi-Select Section */
+.martial-arts-section {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.martial-arts-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  color: #cccccc;
+  margin-bottom: 20px;
+  display: block;
+  font-weight: 500;
+}
+
+.martial-arts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.martial-art-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.martial-art-checkbox:hover {
+  background: rgba(197, 160, 32, 0.1);
+  border-color: rgba(197, 160, 32, 0.3);
+}
+
+.martial-art-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #444444;
+  border-radius: 4px;
+  background: #222222;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.martial-art-checkbox input[type="checkbox"]:checked + .checkbox-custom {
+  background: #c5a020;
+  border-color: #c5a020;
+}
+
+.martial-art-checkbox input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000000;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.checkbox-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 400;
+  white-space: nowrap;
 }
 
 .subscribe-btn {
-  padding: 18px 32px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
-  color: #ffffff;
-  border-radius: 12px;
+  padding: 16px 28px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  background: #c5a020;
+  color: #000000;
+  border-radius: 4px;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  border: none;
+  cursor: pointer;
 }
 
 .subscribe-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+  background: #d4b030;
+  transform: translateY(-1px);
 }
 
 .subscribe-btn:active:not(:disabled) {
@@ -88,31 +232,166 @@
 }
 
 .error-message {
-  color: #ff6b35;
-  font-size: 1rem;
-  margin-top: 10px;
-  padding: 10px;
-  background: rgba(255, 107, 53, 0.1);
-  border-radius: 8px;
-  border-left: 4px solid #ff6b35;
+  color: #c5a020;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(197, 160, 32, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid #c5a020;
 }
 
 .privacy-note {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 0.9rem;
-  color: #888888;
+  color: #999999;
   line-height: 1.5;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.6s;
 }
 
-/* Success state */
-.email-subscription.success {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+.privacy-note.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.email-subscription.success .subscription-content h2 {
-  background: linear-gradient(135deg, #00d4aa, #00b894);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Success Popup Modal */
+.success-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.success-popup {
+  background: #111111;
+  border-radius: 12px;
+  border: 2px solid #c5a020;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  max-width: 500px;
+  width: 90%;
+  margin: 20px;
+  animation: slideInUp 0.4s ease-out;
+}
+
+.success-popup-content {
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.success-popup-content h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+
+.success-popup-content p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #cccccc;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.continue-browsing-btn {
+  padding: 16px 32px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  min-width: 200px;
+}
+
+.continue-browsing-btn.primary {
+  background: #c5a020;
+  color: #000000;
+}
+
+.continue-browsing-btn.primary:hover {
+  background: #d4b030;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(197, 160, 32, 0.3);
+}
+
+.continue-browsing-btn.secondary {
+  background: transparent;
+  color: #c5a020;
+  border: 2px solid #c5a020;
+}
+
+.continue-browsing-btn.secondary:hover {
+  background: #c5a020;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(197, 160, 32, 0.3);
+}
+
+.continue-browsing-btn:active {
+  transform: translateY(0);
+}
+
+.success-info {
+  padding: 20px;
+  background: rgba(197, 160, 32, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(197, 160, 32, 0.2);
+}
+
+.success-info p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  color: #c5a020;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Popup Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Responsive Design */
@@ -122,22 +401,73 @@
   }
   
   .subscription-content h2 {
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
   
   .subscription-content > p {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
   }
   
   .form-group {
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
   }
   
+  .name-input,
   .email-input,
   .subscribe-btn {
-    padding: 16px 20px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .martial-arts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+  }
+  
+  .martial-art-checkbox {
+    padding: 6px 10px;
+  }
+  
+  .checkbox-custom {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .checkbox-text {
+    font-size: 0.85rem;
+  }
+  
+  .success-popup {
+    margin: 15px;
+  }
+  
+  .success-popup-content {
+    padding: 30px 20px;
+  }
+  
+  .success-popup-content h2 {
+    font-size: 2.5rem;
+  }
+  
+  .success-popup-content p {
     font-size: 1rem;
+  }
+  
+  .success-actions {
+    gap: 12px;
+  }
+  
+  .continue-browsing-btn {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    min-width: 180px;
   }
 }
 
@@ -147,16 +477,49 @@
   }
   
   .subscription-content h2 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
   
   .subscription-content > p {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
+  .name-input,
   .email-input,
   .subscribe-btn {
-    padding: 14px 18px;
-    font-size: 0.95rem;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .martial-arts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .martial-art-checkbox {
+    padding: 8px 12px;
+  }
+  
+  .checkbox-custom {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .checkbox-text {
+    font-size: 0.8rem;
+  }
+  
+  .success-popup-content {
+    padding: 25px 15px;
+  }
+  
+  .success-popup-content h2 {
+    font-size: 2rem;
+  }
+  
+  .continue-browsing-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-width: 160px;
   }
 }
